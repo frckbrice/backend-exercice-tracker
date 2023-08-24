@@ -7,10 +7,10 @@ const app = express();
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 
-const corsOptions = {
-  origin: "http://localhost:5173",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// const corsOptions = {
+//   origin: ["http://localhost:5173","*"],
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 
 // add middleware
 app.use(
@@ -18,10 +18,10 @@ app.use(
     type: ["application/json", "text/plain"],
   })
 );
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/exercises', require('./routes/exercise'));
-app.use("/api/students",cors(corsOptions), require("./routes/student"));
+app.use("/api/students", require("./routes/student"));
 
 
 
